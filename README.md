@@ -29,8 +29,8 @@ This is my official **Portfolio Website** hosted at `vishaldev.xyz`. It is desig
 | :--- | :--- |
 | **Languages** | HTML5, CSS3, JavaScript (ES6+) |
 | **Styling** | Modern CSS / Layout Design |
-| **Deployment** | Hostinger/Vercel (vishaldev.xyz) |
-| **Tools** | Git, GitHub, VS Code |
+| **Deployment** | Netlify (vishaldev.xyz) |
+| **Tools** | Git, GitHub, VS Code, Anti-gravity |
 
 ---
 
