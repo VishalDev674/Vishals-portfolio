@@ -6,18 +6,30 @@
     <meta name="description" content="Vishal Kumar - Python Developer, AI Enthusiast, and Problem Solver. Building smart solutions using Python and web technologies.">
     <meta name="keywords" content="Python, AI, Web Development, Portfolio">
     <meta name="author" content="Vishaldev">
-    <title>VISHALDEV</title>
+    <title>VISHALDEV — Python Developer & AI Enthusiast</title>
     <link rel="icon" href="debian-brands-solid.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Chain Animation Background -->
+    <div id="chain-bg"></div>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
     <header>
-        <div class="logo">VISHALDEV</div>
-        <nav class="navigation">
+        <a href="#home" class="logo"><div class="logo-icon"><span>VD</span></div>VISHALDEV</a>
+        <nav class="navigation" id="mainNav">
             <a href="#home">Home</a>
-            <a href="#skills">Skills</a>
+            <a href="#about">About</a>
             <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
             <a href="#contact">Contact</a>
         </nav>
         <div class="header-right">
@@ -26,239 +38,552 @@
                 <a href="https://linkedin.com/in/vishal-kumbhkar" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
                 <a href="mailto:vishalkumbhkar674@gmail.com" rel="noopener noreferrer"><i class="fas fa-envelope"></i></a>
             </div>
-
+            <div class="hamburger" id="hamburger" onclick="document.getElementById('mainNav').classList.toggle('active')">
+                <span></span><span></span><span></span>
+            </div>
         </div>
     </header>
 
     <main>
-        <section id="home" class="hero" data-reveal>
-            <div class="hero-glow"></div>
-            <div class="hero-content">
+        <!-- ORIGIN ARC — Hero -->
+        <section id="home" class="hero">
+            <div class="hero-card glass-card" data-reveal>
+                <div class="hero-glow"></div>
+                <div class="hero-content">
+                    <div class="arc-label"><span class="arc-line"></span><span class="arc-name">Origin Arc</span><span class="arc-dot"></span></div>
+                    <p class="hero-prompt">&gt;&gt;&gt;</p>
+                    <h1><span class="gradient-text">VISHAL_KUMBHKAR</span></h1>
+                    <h2>
+                        <span>Python Developer</span>
+                        <span class="h2-sep">|</span>
+                        <span>AI Enthusiast</span>
+                        <span class="h2-sep">|</span>
+                        <span>Problem Solver</span>
+                    </h2>
+                    <p>Building smart, real-world solutions with Python, AI, and modern web technologies. Turning complex problems into elegant, efficient code.</p>
+                    <div class="hero-cta-group">
+                        <a href="#projects" class="cta-btn">View My Work <i class="fas fa-arrow-right"></i></a>
+                        <a href="#contact" class="cta-btn-secondary">Get In Touch <i class="fas fa-paper-plane"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator"><span>Scroll</span><i class="fas fa-chevron-down"></i></div>
+        </section>
 
-                <h1>Hi, I'm <span class="gradient-text">VISHAL KUMBHKAR</span> 👋</h1>
-                <h2>
-                    <span class="typing-prefix">I'm a </span>
-                    <span class="typing-text" id="typingText"></span>
-                    <span class="typing-cursor">|</span>
-                </h2>
-                <p>
-                    Building smart, real-world solutions with Python, AI, and modern web technologies.
-                    Turning complex problems into elegant, efficient code.
-                </p>
-                <div class="hero-cta-group">
-                    <a href="#projects" class="cta-btn">View My Work <i class="fas fa-arrow-right"></i></a>
-                    <a href="#contact" class="cta-btn-secondary">Get In Touch <i class="fas fa-paper-plane"></i></a>
+        <!-- ABOUT ARC -->
+        <section id="about" class="section">
+            <div class="section-header" data-reveal>
+                <div class="arc-label"><span class="arc-line"></span><span class="arc-name">About Arc</span><span class="arc-dot"></span></div>
+                <h2 class="section-title">About Me</h2>
+            </div>
+            <div class="about-card glass-card" data-reveal>
+                <p class="about-text">Hello! I'm a passionate Python Developer and AI Enthusiast from India. I build smart, real-world solutions using Python, Flask, and TensorFlow. I love turning complex problems into elegant code. I share my work on <a href="https://github.com/VishalDev674" target="_blank">GitHub</a> and connect on <a href="https://linkedin.com/in/vishal-kumbhkar" target="_blank">LinkedIn</a>. Always learning, always building.</p>
+                <div class="stats-grid">
+                    <div class="stat-item"><span class="stat-number" data-count="12">0</span><span class="stat-label">Projects</span></div>
+                    <div class="stat-item"><span class="stat-number" data-count="8">0</span><span class="stat-label">Technologies</span></div>
+                    <div class="stat-item"><span class="stat-number" data-count="2">0</span><span class="stat-label">Years Learning</span></div>
+                </div>
+
+                <!-- Live System Dashboard -->
+                <div class="system-dashboard" data-reveal>
+                    <div class="dashboard-header">
+                        <div class="status-indicator">
+                            <span class="pulse-dot"></span>
+                            <span class="status-text">SYSTEM OPERATIONAL</span>
+                        </div>
+                        <div class="dashboard-title">GITHUB_METRICS_V2.0</div>
+                    </div>
+                    <div class="dashboard-grid">
+                        <div class="dash-stat">
+                            <span class="dash-label">Total Stars</span>
+                            <span class="dash-value" id="github-stars">--</span>
+                        </div>
+                        <div class="dash-stat">
+                            <span class="dash-label">Followers</span>
+                            <span class="dash-value" id="github-followers">--</span>
+                        </div>
+                        <div class="dash-stat">
+                            <span class="dash-label">Public Repos</span>
+                            <span class="dash-value" id="github-repos">--</span>
+                        </div>
+                        <div class="dash-stat">
+                            <span class="dash-label">Uptime</span>
+                            <span class="dash-value" id="system-uptime">99.9%</span>
+                        </div>
+                    </div>
+                    <div class="dashboard-activity">
+                        <div class="activity-label">Recent Activity Sequence:</div>
+                        <div class="activity-bar">
+                            <div class="activity-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="dashboard-chart" data-reveal>
+                        <div class="activity-label">CONTRIBUTION_GRID_MAPPED:</div>
+                        <div class="chart-container">
+                            <img src="https://ghchart.rshah.org/40c463/VishalDev674" alt="GitHub Contributions" loading="lazy">
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="skills" class="skills-section">
-            <h2 class="section-title" data-reveal>Skills</h2>
-            <div class="skills-unified" data-reveal>
+        <!-- CREATION ARC — Projects -->
+        <section id="projects" class="section">
+            <div class="section-header" data-reveal>
+                <div class="arc-label"><span class="arc-line"></span><span class="arc-name">Creation Arc</span><span class="arc-dot"></span></div>
+                <h2 class="section-title">Featured Projects</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card glass-card" data-reveal>
+                    <h3>Tic-Tac-Toe</h3>
+                    <p>A lightweight, logic-driven game built using vanilla JavaScript and modern CSS. Features a custom-coded game engine that tracks player moves, evaluates winning patterns, and provides a smooth, mobile-friendly interface.</p>
+                    <div class="project-tags"><span class="project-tag">JavaScript</span><span class="project-tag">HTML5</span><span class="project-tag">CSS3</span></div>
+                    <div class="project-links"><a href="https://vishaldev674.github.io/TIC-TAK-TOA/Index.html" target="_blank" class="project-link">View Demo <i class="fas fa-external-link-alt"></i></a><a href="https://github.com/VishalDev674/TIC-TAK-TOA" target="_blank" class="project-link"><i class="fab fa-github"></i> Code</a></div>
+                </div>
+                <div class="project-card glass-card" data-reveal>
+                    <h3>API-TESTER</h3>
+                    <p>A streamlined, browser-based environment for testing and debugging RESTful APIs. This tool allows for rapid HTTP request execution with custom headers and payloads, providing clear response visualization to simplify the backend development workflow.</p>
+                    <div class="project-tags"><span class="project-tag">JavaScript</span><span class="project-tag">API</span><span class="project-tag">Web Tools</span></div>
+                    <div class="project-links"><a href="https://github.com/VishalDev674/API-TESTER" target="_blank" class="project-link">View Project <i class="fas fa-arrow-right"></i></a><a href="https://github.com/VishalDev674/API-TESTER" target="_blank" class="project-link"><i class="fab fa-github"></i> Code</a></div>
+                </div>
+                <div class="project-card glass-card" data-reveal>
+                    <h3>Python Automation Tool</h3>
+                    <p>Automated data processing system using Python. Increased efficiency by 40% through script optimization.</p>
+                    <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Automation</span></div>
+                    <div class="project-links"><a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a><a href="#" class="project-link"><i class="fab fa-github"></i> Code</a></div>
+                </div>
+                <div class="project-card glass-card" data-reveal>
+                    <h3>AI-Powered Analytics</h3>
+                    <p>Machine learning model for predictive analytics. Built with Python and integrated web interface.</p>
+                    <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">TensorFlow</span><span class="project-tag">Flask</span></div>
+                    <div class="project-links"><a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a><a href="#" class="project-link"><i class="fab fa-github"></i> Code</a></div>
+                </div>
+            </div>
+        </section>
 
+        <!-- ARSENAL ARC — Skills -->
+        <section id="skills" class="section">
+            <div class="section-header" data-reveal>
+                <div class="arc-label"><span class="arc-line"></span><span class="arc-name">Arsenal Arc</span><span class="arc-dot"></span></div>
+                <h2 class="section-title">Weapons of Modern Development</h2>
+            </div>
+            <div class="skills-card glass-card" data-reveal>
                 <div class="skill-group">
                     <h3 class="skill-group-title"><i class="fas fa-palette"></i> Frontend</h3>
                     <div class="skill-badges">
-                        <div class="skill-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
-                            <span>HTML5</span>
-                        </div>
-                        <div class="skill-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
-                            <span>CSS3</span>
-                        </div>
-                        <div class="skill-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
-                            <span>JavaScript</span>
-                        </div>
+                        <div class="skill-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"><span>HTML5</span></div>
+                        <div class="skill-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3"><span>CSS3</span></div>
+                        <div class="skill-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS"><span>JavaScript</span></div>
                     </div>
                 </div>
-
                 <div class="skill-group">
                     <h3 class="skill-group-title"><i class="fas fa-server"></i> Backend</h3>
                     <div class="skill-badges">
-                        <div class="skill-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
-                            <span>Python</span>
-                        </div>
-                        <div class="skill-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask">
-                            <span>Flask</span>
-                        </div>
-                        <div class="skill-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
-                            <span>MySQL</span>
-                        </div>
+                        <div class="skill-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"><span>Python</span></div>
+                        <div class="skill-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask"><span>Flask</span></div>
+                        <div class="skill-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"><span>MySQL</span></div>
+                        <div class="skill-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C"><span>C</span></div>
                     </div>
                 </div>
-
                 <div class="skill-group">
                     <h3 class="skill-group-title"><i class="fas fa-brain"></i> AI & ML</h3>
                     <div class="skill-badges">
-                        <div class="skill-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow">
-                            <span>TensorFlow</span>
-                        </div>
-                        <div class="skill-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas">
-                            <span>Pandas</span>
-                        </div>
-                        <div class="skill-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy">
-                            <span>NumPy</span>
-                        </div>
+                        <div class="skill-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TF"><span>TensorFlow</span></div>
+                        <div class="skill-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas"><span>Pandas</span></div>
+                        <div class="skill-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy"><span>NumPy</span></div>
                     </div>
                 </div>
-
                 <div class="skill-group">
                     <h3 class="skill-group-title"><i class="fas fa-tools"></i> Tools</h3>
                     <div class="skill-badges">
+                        <div class="skill-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"><span>Git</span></div>
+                        <div class="skill-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="invert-icon"><span>GitHub</span></div>
+                        <div class="skill-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VSCode"><span>VS Code</span></div>
                         <div class="skill-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
-                            <span>Git</span>
-                        </div>
-                        <div class="skill-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="invert-icon">
-                            <span>GitHub</span>
-                        </div>
-                        <div class="skill-badge">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code">
-                            <span>VS Code</span>
+                            <svg fill="currentColor" viewBox="0 0 24 24" style="width: 24px; height: 24px; color: var(--accent-primary); filter: drop-shadow(0 0 5px var(--accent-muted));">
+                                <title>Antigravity</title>
+                                <path d="M12 3.193a.75.75 0 0 1 .637.35l7.5 11.25a.75.75 0 0 1-.637 1.157h-3.44l3.197 4.795a.75.75 0 1 1-1.248.831L14.471 16h-4.942l-3.538 5.576a.75.75 0 1 1-1.248-.831l3.197-4.795h-3.44a.75.75 0 0 1-.637-1.157l7.5-11.25a.75.75 0 0 1 .637-.35Zm-1.897 11.25a.75.75 0 0 0 0 .007h3.794a.75.75 0 0 0 0-.007L12 11.597l-1.897 2.846Z"/>
+                            </svg>
+                            <span>Antigravity</span>
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
 
-        <section id="projects">
-            <h2 class="projects-title" data-reveal>Featured Projects</h2>
-            <div class="projects-wrapper">
-                <div class="project-card" data-reveal>
-                    <div class="project-content">
-                        <h3>Python Automation Tool</h3>
-                        <p>Automated data processing system using Python. Increased efficiency by 40% through script optimization.</p>
-                        <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
-                    </div>
+        <!-- EVOLUTION ARC — Experience -->
+        <section id="experience" class="section">
+            <div class="section-header" data-reveal>
+                <div class="arc-label"><span class="arc-line"></span><span class="arc-name">Evolution Arc</span><span class="arc-dot"></span></div>
+                <h2 class="section-title">Professional Journey</h2>
+            </div>
+            <div class="timeline" data-reveal>
+                <div class="timeline-item glass-card">
+                    <h3>Python Developer</h3>
+                    <div class="timeline-role">Self-Directed Projects & Freelance</div>
+                    <div class="timeline-date">2024 — Present</div>
+                    <p class="timeline-desc">Building production-grade Python tools, AI models, and web applications. Focused on automation and machine learning solutions.</p>
                 </div>
-                <div class="project-card" data-reveal>
-                    <div class="project-content">
-                        <h3>AI-Powered Analytics Dashboard</h3>
-                        <p>Machine learning model for predictive analytics. Built with Python and integrated web interface.</p>
-                        <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
-                    </div>
+                <div class="timeline-item glass-card">
+                    <h3>Web Development</h3>
+                    <div class="timeline-role">Frontend & Backend Projects</div>
+                    <div class="timeline-date">2023 — 2024</div>
+                    <p class="timeline-desc">Developed responsive websites using HTML, CSS, JavaScript. Explored Flask backend development and database integration.</p>
+                </div>
+                <div class="timeline-item glass-card">
+                    <h3>Started Coding</h3>
+                    <div class="timeline-role">The Beginning</div>
+                    <div class="timeline-date">2022</div>
+                    <p class="timeline-desc">Began my coding journey with Python. Fell in love with programming and started building small projects and scripts.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- KNOWLEDGE ARC — Education -->
+        <section class="section">
+            <div class="section-header" data-reveal>
+                <div class="arc-label"><span class="arc-line"></span><span class="arc-name">Knowledge Arc</span><span class="arc-dot"></span></div>
+                <h2 class="section-title">Academic Journey</h2>
+            </div>
+            <div class="education-grid">
+                <div class="education-card glass-card" data-reveal>
+                    <h3>B.Tech — Computer Science</h3>
+                    <div class="degree">Bachelor of Technology</div>
+                    <div class="year">Class of 2025</div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer id="contact">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>About Me</h3>
-                <p>I'm Vishal Kumar, a passionate Python developer and AI enthusiast focused on building smart, real-world solutions. Always learning, always building.</p>
+    <!-- CONNECT ARC — Footer -->
+    <section id="contact" class="connect-section">
+        <div style="max-width:1100px;margin:0 auto;padding:0 clamp(20px,5vw,60px)">
+            <div class="section-header" data-reveal>
+                <div class="arc-label" style="justify-content:center"><span class="arc-line"></span><span class="arc-name">Connect Arc</span><span class="arc-dot"></span></div>
+                <h2 class="section-title">Let's Build Together</h2>
             </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+            <div class="social-cards" data-reveal>
+                <a href="https://github.com/VishalDev674" target="_blank" class="social-card glass-card"><i class="fab fa-github"></i><span class="platform">GitHub</span><span class="handle">@VishalDev674</span></a>
+                <a href="https://linkedin.com/in/vishal-kumbhkar" target="_blank" class="social-card glass-card"><i class="fab fa-linkedin"></i><span class="platform">LinkedIn</span><span class="handle">@vishal-kumbhkar</span></a>
+                <a href="mailto:vishalkumbhkar674@gmail.com" class="social-card glass-card"><i class="fas fa-envelope"></i><span class="platform">Email</span><span class="handle">vishalkumbhkar674</span></a>
             </div>
-            <div class="footer-section">
-                <h3>Connect</h3>
-                <div class="social-links">
-                    <a href="https://github.com/VishalDev674" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://linkedin.com/in/vishal-kumbhkar" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-                    <a href="mailto:vishalkumbhkar674@gmail.com" rel="noopener noreferrer"><i class="fas fa-envelope"></i></a>
-                </div>
+            <div class="connect-ctas" data-reveal>
+                <a href="mailto:vishalkumbhkar674@gmail.com" class="cta-btn"><i class="fas fa-envelope"></i> Email Me</a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Vishal Kumar. All rights reserved.</p>
-        </div>
+    </section>
+    <footer>
+        <p class="footer-text">&copy; 2026 Vishal Kumar. Built with ❤️ and Python</p>
     </footer>
 
     <script>
-        // Layout Toggle
-        // const toggleBtn = document.getElementById('layoutToggle');
-        // const viewportMeta = document.querySelector('meta[name="viewport"]');
-        // const body = document.body;
-        // const switcherIcons = document.querySelectorAll('.switcher-icon');
-        // let currentMode = 'desktop';
 
-        // function applyLayout(mode) {
-        //     currentMode = mode;
-        //     if (mode === 'mobile') {
-        //         viewportMeta.setAttribute('content', 'width=480, initial-scale=1.0');
-        //         body.classList.add('mobile-view');
-        //         switcherIcons[0].style.color = 'rgba(255,255,255,0.4)';
-        //         switcherIcons[1].style.color = '#cdffb1';
-        //     } else {
-        //         viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0');
-        //         body.classList.remove('mobile-view');
-        //         switcherIcons[0].style.color = '#cdffb1';
-        //         switcherIcons[1].style.color = 'rgba(255,255,255,0.4)';
-        //     }
-        //     window.dispatchEvent(new Event('resize'));
-        // }
 
-        // toggleBtn.addEventListener('change', () => {
-        //     applyLayout(toggleBtn.checked ? 'mobile' : 'desktop');
-        // });
-
-        // applyLayout(currentMode);
-
-        // Typing Animation
-        const typingEl = document.getElementById('typingText');
-        const roles = ['Python Developer', 'AI Enthusiast', 'Problem Solver', 'Web Developer'];
-        let roleIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-
-        function typeEffect() {
-            const currentRole = roles[roleIndex];
-            if (!isDeleting) {
-                typingEl.textContent = currentRole.substring(0, charIndex + 1);
-                charIndex++;
-                if (charIndex === currentRole.length) {
-                    isDeleting = true;
-                    setTimeout(typeEffect, 1800);
-                    return;
-                }
-                setTimeout(typeEffect, 80);
-            } else {
-                typingEl.textContent = currentRole.substring(0, charIndex - 1);
-                charIndex--;
-                if (charIndex === 0) {
-                    isDeleting = false;
-                    roleIndex = (roleIndex + 1) % roles.length;
-                    setTimeout(typeEffect, 400);
-                    return;
-                }
-                setTimeout(typeEffect, 40);
-            }
-        }
-        typeEffect();
-
-        // Scroll Reveal Animation
-        const revealElements = document.querySelectorAll('[data-reveal]');
-
+        // Scroll Reveal
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('revealed'); revealObserver.unobserve(entry.target); }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+
+        // Stat Counter Animation
+        const statObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
-                    revealObserver.unobserve(entry.target);
+                    const el = entry.target;
+                    const target = parseInt(el.dataset.count);
+                    let current = 0;
+                    const step = Math.ceil(target / 30);
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) { current = target; clearInterval(timer); }
+                        el.textContent = current + '+';
+                    }, 50);
+                    statObserver.unobserve(el);
                 }
             });
-        }, {
-            threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px'
+        }, { threshold: 0.5 });
+        document.querySelectorAll('.stat-number[data-count]').forEach(el => statObserver.observe(el));
+
+        // Close mobile nav on link click
+        document.querySelectorAll('.navigation a').forEach(a => {
+            a.addEventListener('click', () => document.getElementById('mainNav').classList.remove('active'));
         });
 
-        revealElements.forEach(el => revealObserver.observe(el));
+        // GitHub Stats Logic
+        async function fetchGitHubStats() {
+            const username = 'VishalDev674';
+            try {
+                // Fetch user data
+                const userResponse = await fetch(`https://api.github.com/users/${username}`);
+                const userData = await userResponse.json();
+                
+                // Fetch repos to calculate stars
+                const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
+                const reposData = await reposResponse.json();
+                
+                const totalStars = reposData.reduce((acc, repo) => acc + repo.stargazers_count, 0);
+                
+                // Update Dashboard
+                document.getElementById('github-stars').textContent = totalStars;
+                document.getElementById('github-followers').textContent = userData.followers;
+                document.getElementById('github-repos').textContent = userData.public_repos;
+                
+                // Randomly drift activity bar for life-like effect
+                setInterval(() => {
+                    const bar = document.querySelector('.activity-fill');
+                    if (bar) {
+                        const randomWidth = 40 + Math.random() * 55;
+                        bar.style.width = randomWidth + '%';
+                    }
+                }, 4000);
+
+            } catch (error) {
+                console.error('Error fetching GitHub stats:', error);
+                // Fallback to static values if API fails
+                document.getElementById('github-stars').textContent = '10+';
+                document.getElementById('github-followers').textContent = '20+';
+                document.getElementById('github-repos').textContent = '15+';
+            }
+        }
+        fetchGitHubStats();
+    </script>
+
+    <!-- Three.js Chain Animation Background Script -->
+    <script type="module">
+        import * as THREE from 'three';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+        import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
+
+        // ─── SCENE ──────────────────────────────────────────────────
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x040e18);
+        scene.fog = new THREE.FogExp2(0x040e18, 0.012);
+
+        const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 250);
+        camera.position.set(0, 0, 22);
+        camera.lookAt(0, 0, 0);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.2;
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        document.getElementById('chain-bg').appendChild(renderer.domElement);
+
+        // ─── LIGHTING ───────────────────────────────────────────────
+        scene.add(new THREE.AmbientLight(0x202530, 1.7));
+        const keyLight = new THREE.DirectionalLight(0xffffff, 2.5);
+        keyLight.position.set(12, 10, 8);
+        scene.add(keyLight);
+        const key2 = new THREE.DirectionalLight(0xddeeff, 2.0);
+        key2.position.set(-10, 8, 6);
+        scene.add(key2);
+        const rimLight = new THREE.DirectionalLight(0xffffff, 2.0);
+        rimLight.position.set(0, 0, -20);
+        scene.add(rimLight);
+        const frontFill = new THREE.DirectionalLight(0xffffff, 6.0);
+        frontFill.position.set(0, 0, 30);
+        scene.add(frontFill);
+
+        const spotLight = new THREE.SpotLight(0xffffff, 15, 100, 0.5, 0.2, 1);
+        spotLight.position.set(0, 10, 40);
+        spotLight.target.position.set(0, 0, 0);
+        scene.add(spotLight);
+        scene.add(spotLight.target);
+
+        const pointLight1 = new THREE.PointLight(0xffffff, 5, 60);
+        pointLight1.position.set(4, 2, 8);
+        scene.add(pointLight1);
+        const pointLight3 = new THREE.PointLight(0xaaaaff, 4, 60);
+        pointLight3.position.set(-3, -5, 10);
+        scene.add(pointLight3);
+
+        // ─── POST-PROCESSING ────────────────────────────────────────
+        const composer = new EffectComposer(renderer);
+        composer.addPass(new RenderPass(scene, camera));
+        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 0.15, 0.4, 0.9);
+        composer.addPass(bloomPass);
+
+        const vignetteShader = {
+            uniforms: { tDiffuse: { value: null }, darkness: { value: 0.7 }, offset: { value: 1.2 } },
+            vertexShader: `varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
+            fragmentShader: `uniform sampler2D tDiffuse; uniform float darkness; uniform float offset; varying vec2 vUv; void main() { vec4 texel = texture2D(tDiffuse, vUv); vec2 uv = (vUv - vec2(0.5)) * vec2(offset); float vig = clamp(1.0 - dot(uv, uv), 0.0, 1.0); texel.rgb *= mix(1.0, vig, darkness); gl_FragColor = texel; }`
+        };
+        composer.addPass(new ShaderPass(vignetteShader));
+
+        // ─── CHAIN MATERIAL ─────────────────────────────────────────
+        const chainMaterial = new THREE.MeshPhysicalMaterial({
+            color: 0xffffff,
+            metalness: 1.0,
+            roughness: 0.0,
+            reflectivity: 1.0,
+            clearcoat: 1.0,
+            clearcoatRoughness: 0.0,
+            envMapIntensity: 3.5
+        });
+
+        const pmremGenerator = new THREE.PMREMGenerator(renderer);
+        const envScene = new THREE.Scene();
+        const eColors = [0xffffff, 0xddddff, 0xffeedd, 0x00ffff, 0xff00ff, 0xffffff];
+        for (let i = 0; i < 8; i++) {
+            const el = new THREE.PointLight(eColors[i % eColors.length], 50, 100);
+            const phi = Math.random() * Math.PI * 2;
+            const theta = Math.random() * Math.PI;
+            el.position.setFromSphericalCoords(40, theta, phi);
+            envScene.add(el);
+        }
+        const envMap = pmremGenerator.fromScene(envScene, 0.04).texture;
+        chainMaterial.envMap = envMap;
+
+        // ─── GEOMETRY ───────────────────────────────────────────────
+        function createLinkGeometry(width = 1.2, height = 2.4, tubeRadius = 0.22) {
+            class LinkCurve extends THREE.Curve {
+                constructor(w, h) {
+                    super();
+                    this.w = w; this.h = h;
+                }
+                getPoint(t, optionalTarget = new THREE.Vector3()) {
+                    const point = optionalTarget;
+                    const r = this.w / 2;
+                    const s = (this.h - this.w) / 2;
+                    const arcLen = Math.PI * r;
+                    const straightLen = 2 * s;
+                    const totalLen = 2 * arcLen + 2 * straightLen;
+                    let d = t * totalLen;
+                    if (d <= straightLen) return point.set(r, 0, -s + d);
+                    d -= straightLen;
+                    if (d <= arcLen) {
+                        const angle = (d / arcLen) * Math.PI;
+                        return point.set(r * Math.cos(angle), 0, s + r * Math.sin(angle));
+                    }
+                    d -= arcLen;
+                    if (d <= straightLen) return point.set(-r, 0, s - d);
+                    d -= straightLen;
+                    const angle = Math.PI + (d / arcLen) * Math.PI;
+                    return point.set(r * Math.cos(angle), 0, -s + r * Math.sin(angle));
+                }
+            }
+            return new THREE.TubeGeometry(new LinkCurve(width, height), 70, tubeRadius, 20, true);
+        }
+
+        // ─── PARTICLES ──────────────────────────────────────────────
+        const particleGeo = new THREE.BufferGeometry();
+        const particlePos = new Float32Array(800 * 3);
+        for (let i = 0; i < 800; i++) {
+            particlePos[i * 3] = (Math.random() - 0.5) * 150;
+            particlePos[i * 3 + 1] = (Math.random() - 0.5) * 120;
+            particlePos[i * 3 + 2] = (Math.random() - 0.5) * 150;
+        }
+        particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
+        const particles = new THREE.Points(particleGeo, new THREE.PointsMaterial({
+            color: 0xffffff, size: 0.02, transparent: true, opacity: 0.5,
+            blending: THREE.AdditiveBlending, depthWrite: false
+        }));
+        scene.add(particles);
+
+        // ─── STRANDS ────────────────────────────────────────────────
+        const strandDefs = [
+            { points: [[40, 20, -5], [20, 0, 10], [0, -20, 5], [-20, 0, -10], [-40, 20, -5]], scale: 1.1, speed: 0.015, offset: 0 },
+            { points: [[-60, 0, 5], [-40, -25, 15], [-20, -10, 5], [0, -35, -5], [-60, 0, 5]], scale: 1.2, speed: 0.02, offset: 0.2 },
+            { points: [[0, 30, 0], [20, 0, -15], [0, -30, 0], [-20, 0, 15], [0, 30, 0]], scale: 1.3, speed: 0.012, offset: 0.4 },
+            { points: [[50, -10, -20], [0, 15, -10], [-50, -10, -20], [0, -35, -10], [50, -10, -20]], scale: 0.7, speed: 0.008, offset: 0.1 },
+            { points: [[-45, -25, 0], [-20, 5, 12], [20, -5, 12], [45, 25, 0], [-45, -25, 0]], scale: 1.0, speed: 0.014, offset: 0.6 },
+            { points: [[15, 15, 25], [30, -5, 20], [0, -15, 15], [-30, -5, 20], [15, 15, 25]], scale: 0.85, speed: 0.025, offset: 0.8 },
+            { points: [[-20, 40, -10], [0, 10, -5], [20, 40, -10], [0, 0, -20], [-20, 40, -10]], scale: 0.95, speed: 0.01, offset: 0.3 },
+            { points: [[0, 0, -50], [40, 10, -40], [0, 20, -30], [-40, 10, -40], [0, 0, -50]], scale: 1.5, speed: 0.005, offset: 0.5 }
+        ];
+
+        const allStrands = [];
+        const linkGeo = createLinkGeometry(1.2, 2.4, 0.22);
+        const mouse = new THREE.Vector2(0, 0);
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        function initChain() {
+            for (const def of strandDefs) {
+                const basePoints = def.points.map(p => new THREE.Vector3(...p));
+                const curve = new THREE.CatmullRomCurve3(basePoints, true);
+                const curveLength = curve.getLength();
+                const targetSpacing = (2.4 - 0.44) * def.scale * 0.88;
+                let linkCount = Math.round(curveLength / targetSpacing);
+                if (linkCount % 2 !== 0) linkCount++;
+                const group = new THREE.Group();
+                const links = [];
+                for (let i = 0; i < linkCount; i++) {
+                    const l = new THREE.Mesh(linkGeo, chainMaterial);
+                    l.castShadow = true; l.receiveShadow = true;
+                    l.scale.set(def.scale, def.scale, def.scale);
+                    group.add(l);
+                    links.push(l);
+                }
+                scene.add(group);
+                allStrands.push({ group, links, curve, basePoints, ...def, spacingT: 1.0 / linkCount });
+            }
+            animateChain();
+        }
+
+        function animateChain() {
+            requestAnimationFrame(animateChain);
+            const t = performance.now() * 0.001;
+
+            // Dynamic Camera Path
+            const camX = Math.sin(t * 0.15) * 5.0 + mouse.x * 3.0;
+            const camY = Math.cos(t * 0.1) * 3.0 + mouse.y * 2.0;
+            const camZ = 22 + Math.sin(t * 0.2) * 5.0;
+            camera.position.x += (camX - camera.position.x) * 0.05;
+            camera.position.y += (camY - camera.position.y) * 0.05;
+            camera.position.z += (camZ - camera.position.z) * 0.05;
+            camera.lookAt(mouse.x * 2, mouse.y * 2, 0);
+
+            particles.rotation.y = t * 0.02;
+            particles.material.opacity = 0.3 + Math.sin(t) * 0.1;
+
+            for (const s of allStrands) {
+                const { links, curve, basePoints, speed, offset, spacingT } = s;
+
+                // Living Paths: Points drift subtly
+                basePoints.forEach((p, i) => {
+                    if (i < basePoints.length - 1) {
+                        curve.points[i].x = p.x + Math.sin(t * 0.5 + i) * 2.0;
+                        curve.points[i].y = p.y + Math.cos(t * 0.4 + i) * 2.0;
+                    }
+                });
+                curve.points[basePoints.length - 1].copy(curve.points[0]);
+                curve.updateArcLengths();
+
+                links.forEach((l, i) => {
+                    let u = (i * spacingT + t * speed + offset) % 1.0;
+                    if (u < 0) u += 1.0;
+                    const pos = curve.getPointAt(u);
+                    const tangent = curve.getTangentAt(u);
+                    l.position.copy(pos);
+                    l.lookAt(pos.clone().add(tangent));
+                    if (i % 2 !== 0) {
+                        const q90 = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 0, 1), Math.PI / 2);
+                        l.quaternion.multiply(q90);
+                    }
+                });
+            }
+            composer.render();
+        }
+
+        // Handle resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            composer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        initChain();
     </script>
 </body>
 </html>
