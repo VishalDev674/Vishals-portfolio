@@ -19,7 +19,7 @@ This is my official **Portfolio Website** hosted at `vishaldev.xyz`. It is desig
 **Key Features:**
 - 📱 **Fully Responsive:** Optimized for mobile, tablet, and desktop views.
 - ⚡ **Pure Performance:** Built using clean, semantic **HTML5**, modern **CSS3** (Flexbox/Grid), and vanilla **JavaScript**.
-- 🎨 **Sleek UI:** A minimalist design focused on user experience and readability.
+- 🎨 **Sleek UI:** A dynamic and interactive design featuring a custom Three.js 3D background and a macOS-style dock navigation.
 
 ---
 
@@ -27,7 +27,7 @@ This is my official **Portfolio Website** hosted at `vishaldev.xyz`. It is desig
 
 | Category | Tools & Languages |
 | :--- | :--- |
-| **Languages** | HTML5, CSS3, JavaScript (ES6+) |
+| **Languages** | HTML5, CSS3, JavaScript (ES6+), Three.js |
 | **Styling** | Modern CSS / Layout Design |
 | **Deployment** | Netlify (vishaldev.xyz) |
 | **Tools** | Git, GitHub, VS Code, Anti-gravity |
@@ -36,8 +36,8 @@ This is my official **Portfolio Website** hosted at `vishaldev.xyz`. It is desig
 
 ### 📊 GitHub Stats
 
-![Vishal's GitHub stats](https://github-readme-stats.vercel.app/api?username=vishalkumbhkar674-art&show_icons=true&theme=radical)
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=vishalkumbhkar674-art&layout=compact&theme=radical)
+![Vishal's GitHub stats](https://github-readme-stats.vercel.app/api?username=VishalDev674&show_icons=true&theme=radical)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=VishalDev674&layout=compact&theme=radical)
 
 ---
 
