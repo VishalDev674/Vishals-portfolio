@@ -39,27 +39,48 @@
     </script>
     <header>
         <a href="#home" class="logo"><div class="logo-icon"><span>VD</span></div>VISHALDEV</a>
-        <nav class="navigation" id="mainNav">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#skills">Skills</a>
-            <a href="#experience">Experience</a>
-            <a href="#contact">Contact</a>
+
+        <!-- macOS-style Dock Navigation -->
+        <nav class="dock-outer" id="navDock" role="toolbar" aria-label="Application dock">
+            <div class="dock-panel">
+                <a href="#home" class="dock-item" data-label="Home">
+                    <div class="dock-icon"><i class="fas fa-house"></i></div>
+                    <div class="dock-label">Home</div>
+                </a>
+                <a href="#about" class="dock-item" data-label="About">
+                    <div class="dock-icon"><i class="fas fa-user"></i></div>
+                    <div class="dock-label">About</div>
+                </a>
+                <a href="#projects" class="dock-item" data-label="Projects">
+                    <div class="dock-icon"><i class="fas fa-code"></i></div>
+                    <div class="dock-label">Projects</div>
+                </a>
+                <a href="#skills" class="dock-item" data-label="Skills">
+                    <div class="dock-icon"><i class="fas fa-screwdriver-wrench"></i></div>
+                    <div class="dock-label">Skills</div>
+                </a>
+                <a href="#experience" class="dock-item" data-label="Experience">
+                    <div class="dock-icon"><i class="fas fa-briefcase"></i></div>
+                    <div class="dock-label">Experience</div>
+                </a>
+                <a href="#contact" class="dock-item" data-label="Contact">
+                    <div class="dock-icon"><i class="fas fa-paper-plane"></i></div>
+                    <div class="dock-label">Contact</div>
+                </a>
+            </div>
         </nav>
+
         <div class="header-right">
             <div class="social-links">
                 <a href="https://github.com/VishalDev674" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
                 <a href="https://linkedin.com/in/vishal-kumbhkar" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
                 <a href="mailto:vishalkumbhkar674@gmail.com" rel="noopener noreferrer"><i class="fas fa-envelope"></i></a>
             </div>
-            <div class="hamburger" id="hamburger" onclick="document.getElementById('mainNav').classList.toggle('active')">
-                <span></span><span></span><span></span>
-            </div>
         </div>
     </header>
 
     <main>
+
         <!-- ORIGIN ARC — Hero -->
         <section id="home" class="hero">
             <div class="hero-card glass-card" data-reveal>
@@ -321,10 +342,98 @@
         }, { threshold: 0.5 });
         document.querySelectorAll('.stat-number[data-count]').forEach(el => statObserver.observe(el));
 
-        // Close mobile nav on link click
-        document.querySelectorAll('.navigation a').forEach(a => {
-            a.addEventListener('click', () => document.getElementById('mainNav').classList.remove('active'));
-        });
+        // ── DOCK MAGNIFICATION ENGINE ──
+        (function initDock() {
+            const dock = document.getElementById('navDock');
+            const panel = dock.querySelector('.dock-panel');
+            const items = dock.querySelectorAll('.dock-item');
+            const BASE_SIZE = 40;      // px — base icon size (matches header)
+            const MAG_SIZE = 56;       // px — magnified size on hover
+            const DISTANCE = 150;      // px — influence radius
+            const SPRING = { stiffness: 0.15, damping: 0.75 }; // spring physics
+
+            // Track current animated sizes for spring interpolation
+            const currentSizes = Array.from(items, () => BASE_SIZE);
+            const targetSizes = Array.from(items, () => BASE_SIZE);
+            let mouseX = Infinity;
+            let animating = false;
+
+            // Set initial sizes
+            items.forEach(item => {
+                item.style.width = BASE_SIZE + 'px';
+                item.style.height = BASE_SIZE + 'px';
+            });
+
+            // Mouse tracking on the dock panel
+            panel.addEventListener('mousemove', (e) => {
+                mouseX = e.pageX;
+                updateTargets();
+                if (!animating) { animating = true; animate(); }
+            });
+
+            panel.addEventListener('mouseleave', () => {
+                mouseX = Infinity;
+                targetSizes.fill(BASE_SIZE);
+                if (!animating) { animating = true; animate(); }
+            });
+
+            function updateTargets() {
+                items.forEach((item, i) => {
+                    const rect = item.getBoundingClientRect();
+                    const itemCenterX = rect.left + rect.width / 2;
+                    const dist = Math.abs(mouseX - itemCenterX);
+                    // Smooth gaussian-like falloff
+                    const scale = Math.max(0, 1 - (dist / DISTANCE) ** 2);
+                    targetSizes[i] = BASE_SIZE + (MAG_SIZE - BASE_SIZE) * scale;
+                });
+            }
+
+            function animate() {
+                let settled = true;
+                items.forEach((item, i) => {
+                    const diff = targetSizes[i] - currentSizes[i];
+                    // Spring: velocity = stiffness * diff, apply damping
+                    currentSizes[i] += diff * SPRING.stiffness;
+                    // Snap when close enough
+                    if (Math.abs(diff) > 0.3) {
+                        settled = false;
+                    } else {
+                        currentSizes[i] = targetSizes[i];
+                    }
+                    const s = Math.round(currentSizes[i] * 10) / 10;
+                    item.style.width = s + 'px';
+                    item.style.height = s + 'px';
+                });
+                if (!settled) {
+                    requestAnimationFrame(animate);
+                } else {
+                    animating = false;
+                }
+            }
+
+            // Label show/hide on individual item hover
+            items.forEach(item => {
+                const label = item.querySelector('.dock-label');
+                item.addEventListener('mouseenter', () => label.classList.add('visible'));
+                item.addEventListener('mouseleave', () => label.classList.remove('visible'));
+            });
+
+            // Active section highlighting
+            const sections = document.querySelectorAll('section[id], .connect-section');
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        items.forEach(item => {
+                            const href = item.getAttribute('href');
+                            item.classList.toggle('active', href === '#' + id);
+                        });
+                    }
+                });
+            }, { threshold: 0.3, rootMargin: '-10% 0px -10% 0px' });
+            sections.forEach(s => sectionObserver.observe(s));
+        })();
+
 
         // GitHub Stats Logic
         async function fetchGitHubStats() {
