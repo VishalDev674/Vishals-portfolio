@@ -114,6 +114,10 @@
             </div>
         </nav>
 
+        <button class="mobile-menu-btn" aria-label="Toggle menu" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+
         <div class="header-right">
             <div class="social-links">
                 <a href="https://github.com/VishalDev674" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
@@ -516,6 +520,35 @@
             }
         }
         fetchGitHubStats();
+
+        // Mobile Menu Toggle Logic
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navDock = document.getElementById('navDock');
+        
+        if (mobileMenuBtn && navDock) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navDock.classList.toggle('mobile-open');
+                const icon = mobileMenuBtn.querySelector('i');
+                if (navDock.classList.contains('mobile-open')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            // Close menu when a link is clicked
+            const navLinks = navDock.querySelectorAll('.dock-item');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navDock.classList.remove('mobile-open');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+        }
     </script>
 
     <!-- Three.js Chain Animation Background Script -->

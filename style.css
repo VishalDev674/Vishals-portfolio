@@ -158,6 +158,26 @@ header {
 }
 .logo-icon span { transform: rotate(-45deg); }
 
+/* ── MOBILE MENU BUTTON (Hidden by default) ── */
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  color: var(--text-primary);
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.mobile-menu-btn:hover {
+  background: rgba(96, 165, 250, 0.15);
+  color: var(--accent-primary);
+}
+
 /* ── DOCK NAVIGATION ── */
 .dock-outer {
   display: flex;
@@ -292,7 +312,6 @@ main {
   width: 100%;
   padding: 80px 0;
   scroll-margin-top: 70px;
-  min-height: calc(100vh - 70px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -901,7 +920,6 @@ main {
   padding: 80px 0 40px;
   text-align: center;
   scroll-margin-top: 70px;
-  min-height: calc(100vh - 70px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -976,12 +994,58 @@ footer {
 @media (max-width: 768px) {
   header { padding: 12px 20px; }
   .logo { font-size: 1.3rem; }
-  /* Dock compact on mobile — no magnification on touch */
   .header-right { display: none; }
-  .dock-panel { gap: 4px; padding: 4px 6px; }
-  .dock-item { width: 34px !important; height: 34px !important; border-radius: 8px; }
-  .dock-icon { font-size: 14px; }
-  .dock-label { display: none; }
+  
+  .mobile-menu-btn { display: flex; }
+
+  .dock-outer {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+  }
+  .dock-outer.mobile-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .dock-panel {
+    flex-direction: column;
+    gap: 8px;
+    background: transparent;
+    padding: 0;
+  }
+  .dock-item {
+    width: 100% !important;
+    height: auto !important;
+    padding: 10px 15px;
+    justify-content: flex-start;
+    gap: 12px;
+    border-radius: 8px;
+  }
+  .dock-icon { font-size: 16px; width: 20px; text-align: center; }
+  .dock-label { 
+    display: block !important; 
+    position: static; 
+    opacity: 1; 
+    visibility: visible; 
+    background: none; 
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    color: var(--text-primary);
+    transform: none;
+  }
 
   .hero { min-height: calc(100vh - 60px); padding: 40px 0; }
   .hero-card { padding: 30px 24px; }
