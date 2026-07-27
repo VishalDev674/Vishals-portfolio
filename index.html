@@ -676,6 +676,114 @@
         }
         fetchGitHubStats();
 
+        // ── 3D SPRING TILT for Project Cards ─────────────────────────────────────
+        (function initTiltCards() {
+            /**
+             * Spring physics matching framer-motion: damping=15, stiffness=150.
+             * Each card maintains its own state so they are independent.
+             */
+            const SPRING_STIFFNESS = 150;
+            const SPRING_DAMPING   = 15;
+            const MAX_TILT         = 5; // degrees — subtle tilt
+
+            const cards = document.querySelectorAll('.project-card');
+
+            cards.forEach(card => {
+                // ── Wrap card in perspective container ──────────────────────────
+                const wrap = document.createElement('div');
+                wrap.className = 'project-card-tilt-wrap';
+                card.parentNode.insertBefore(wrap, card);
+                wrap.appendChild(card);
+
+                // ── Inject glare overlay ─────────────────────────────────────────
+                const glare = document.createElement('div');
+                glare.className = 'project-card-glare';
+                card.appendChild(glare);
+
+                // ── Spring state ─────────────────────────────────────────────────
+                let targetRotX = 0, targetRotY = 0;
+                let currentRotX = 0, currentRotY = 0;
+                let velX = 0, velY = 0;
+                let rafId = null;
+                let isHovered = false;
+
+                // ── Spring step (runs in rAF) ────────────────────────────────────
+                function springStep() {
+                    const dt = 1 / 60; // assume 60fps
+
+                    // Spring force: F = -k * displacement - c * velocity
+                    const forceX = -SPRING_STIFFNESS * (currentRotX - targetRotX) - SPRING_DAMPING * velX;
+                    const forceY = -SPRING_STIFFNESS * (currentRotY - targetRotY) - SPRING_DAMPING * velY;
+
+                    velX += forceX * dt;
+                    velY += forceY * dt;
+                    currentRotX += velX * dt;
+                    currentRotY += velY * dt;
+
+                    applyTransform();
+
+                    // Settle check
+                    const settled =
+                        Math.abs(currentRotX - targetRotX) < 0.01 &&
+                        Math.abs(currentRotY - targetRotY) < 0.01 &&
+                        Math.abs(velX) < 0.01 &&
+                        Math.abs(velY) < 0.01;
+
+                    if (!settled) {
+                        rafId = requestAnimationFrame(springStep);
+                    } else {
+                        currentRotX = targetRotX;
+                        currentRotY = targetRotY;
+                        velX = velY = 0;
+                        applyTransform();
+                        rafId = null;
+                    }
+                }
+
+                function applyTransform() {
+                    // Small translateZ lift on hover for depth
+                    const lift = isHovered ? 6 : 0;
+                    card.style.transform =
+                        `rotateX(${currentRotX}deg) rotateY(${currentRotY}deg) translateZ(${lift}px)`;
+                }
+
+                function startSpring() {
+                    if (!rafId) rafId = requestAnimationFrame(springStep);
+                }
+
+                // ── Mouse move handler ───────────────────────────────────────────
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const xPct = (e.clientX - rect.left) / rect.width  - 0.5; // -0.5 .. +0.5
+                    const yPct = (e.clientY - rect.top)  / rect.height - 0.5;
+
+                    // framer-motion mapping: rotateX maps Y, rotateY maps X
+                    targetRotX = -yPct * MAX_TILT * 2;   // positive Y → card tilts back
+                    targetRotY =  xPct * MAX_TILT * 2;   // positive X → card tilts right
+
+                    // Glare follows mouse
+                    const glareX = (e.clientX - rect.left) / rect.width  * 100;
+                    const glareY = (e.clientY - rect.top)  / rect.height * 100;
+                    glare.style.background =
+                        `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.13) 0%, rgba(255,255,255,0.04) 40%, transparent 70%)`;
+
+                    startSpring();
+                });
+
+                card.addEventListener('mouseenter', () => {
+                    isHovered = true;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    isHovered = false;
+                    targetRotX = 0;
+                    targetRotY = 0;
+                    startSpring();
+                });
+            });
+        })();
+
+
         // Mobile Menu Toggle Logic
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navDock = document.getElementById('navDock');

@@ -724,6 +724,12 @@ main {
   margin: 0 auto;
 }
 
+/* 3D Tilt: each card gets its own perspective context */
+.project-card-tilt-wrap {
+  perspective: 900px;
+  width: 100%;
+}
+
 .project-card {
   position: relative;
   padding: 30px;
@@ -736,13 +742,40 @@ main {
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-subtle);
   border-radius: 18px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  will-change: transform;
+  /* transition is handled by JS spring — only border/shadow animate via CSS */
+  transition: border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .project-card:hover {
   border-color: var(--border-hover);
-  box-shadow: 0 0 30px rgba(96,165,250,0.12), 0 12px 40px rgba(0,0,0,0.4);
-  transform: translateY(-3px);
+  box-shadow:
+    0 0 40px rgba(96,165,250,0.16),
+    0 20px 60px rgba(0,0,0,0.5),
+    0 0 0 1px rgba(96,165,250,0.08) inset;
+}
+
+/* Glare highlight that follows the mouse */
+.project-card-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255,255,255,0.12) 0%,
+    rgba(255,255,255,0.04) 40%,
+    transparent 70%
+  );
+}
+
+.project-card:hover .project-card-glare {
+  opacity: 0;
 }
 
 /* Corner HUD Brackets */
