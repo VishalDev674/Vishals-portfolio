@@ -209,7 +209,7 @@ header {
   text-decoration: none;
   cursor: pointer;
   outline: none;
-  transition: background 0.25s ease, color 0.25s ease;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
   will-change: width, height;
 }
 .dock-item:hover,
@@ -217,9 +217,18 @@ header {
   background: rgba(96, 165, 250, 0.15);
   color: var(--accent-primary);
 }
+.dock-item:active {
+  background: rgba(96, 165, 250, 0.3);
+  color: var(--accent-glow);
+  transform: scale(0.92);
+}
 .dock-item.active {
-  color: var(--accent-primary);
-  background: rgba(96, 165, 250, 0.1);
+  color: var(--accent-glow);
+  background: rgba(96, 165, 250, 0.2);
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.3);
+}
+.dock-item.active .dock-icon {
+  color: var(--accent-glow);
 }
 .dock-item.active::after {
   content: '';
@@ -227,11 +236,11 @@ header {
   bottom: -4px;
   left: 50%;
   transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
-  background: var(--accent-primary);
-  box-shadow: 0 0 6px var(--accent-glow);
+  background: var(--accent-glow);
+  box-shadow: 0 0 8px var(--accent-glow);
 }
 .dock-icon {
   display: flex;
@@ -1243,7 +1252,7 @@ footer {
     border: none;
     box-shadow: none;
     padding: 0;
-    color: var(--text-primary);
+    color: inherit;
     transform: none;
   }
 

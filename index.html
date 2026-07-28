@@ -621,7 +621,15 @@
                 item.addEventListener('mouseleave', () => label.classList.remove('visible'));
             });
 
-            // Active section highlighting
+            // Immediate active state change on click
+            items.forEach(item => {
+                item.addEventListener('click', () => {
+                    items.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                });
+            });
+
+            // Active section highlighting on scroll
             const sections = document.querySelectorAll('section[id], .connect-section');
             const sectionObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -633,7 +641,7 @@
                         });
                     }
                 });
-            }, { threshold: 0.3, rootMargin: '-10% 0px -10% 0px' });
+            }, { threshold: 0.2, rootMargin: '-10% 0px -10% 0px' });
             sections.forEach(s => sectionObserver.observe(s));
         })();
 
